@@ -3,17 +3,15 @@ import qs from 'querystring';
 
 const baseApiUrl = 'http://localhost:3001';
 
-const getQueryString = (queryStringObject = {}) => {
-  return `${qs.stringify(queryStringObject)}`;
-};
+const getQueryString = (queryStringObject = {}) => `${qs.stringify(queryStringObject)}`;
 
 const buildUrl = (path, queryStringObject = {}) =>
   `${baseApiUrl}/${path}?${getQueryString(queryStringObject)}`;
 
-const responseHandler = response => {
+const responseHandler = (response) => {
   if (response.status >= 500) {
     return response.text()
-      .then(text => { throw new Error(text); });
+      .then((text) => { throw new Error(text); });
   }
 
   if (response.status >= 400) {
@@ -21,11 +19,11 @@ const responseHandler = response => {
 
     if (isJSON) {
       return response.json()
-        .then(obj => { throw new Error(JSON.stringify(obj)); });
+        .then((obj) => { throw new Error(JSON.stringify(obj)); });
     }
 
     return response.text()
-      .then(text => {
+      .then((text) => {
         throw new Error(text);
       });
   }

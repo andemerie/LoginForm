@@ -1,5 +1,6 @@
 const router = require('koa-router')();
 const utils = require('./utils.js');
+
 const COOKIE_KEY = 'token';
 
 const requireAuth = async (ctx, next) => {
@@ -12,7 +13,7 @@ const requireAuth = async (ctx, next) => {
   return next();
 };
 
-router.get('/', async (ctx) => ctx.render('login'));
+router.get('/', async ctx => ctx.render('login'));
 
 router.get('/protected', requireAuth, async (ctx) => {
   ctx.session.count = ctx.session.count ? ctx.session.count + 1 : 1;
@@ -51,8 +52,8 @@ router.post('/auth', async (ctx) => {
   }
 
   const token = utils.generateToken(email);
-  ctx.cookies.set(COOKIE_KEY, token, { 
-    httpOnly: false, 
+  ctx.cookies.set(COOKIE_KEY, token, {
+    httpOnly: false,
     maxAge: utils.TOKEN_EXP * 1000,
     sameSite: true,
     secure: false,

@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+
 const saltRounds = 10;
 const TOKEN_EXP = 30;
 const TOKEN_SECRET = 'xsecretkey';
@@ -14,7 +15,7 @@ exports.generateHash = password => bcrypt.hash(password, saltRounds);
 exports.compare = bcrypt.compare;
 
 exports.generateToken = data => jwt.sign(
-  { data }, TOKEN_SECRET, { expiresIn: `${TOKEN_EXP}s` }
+  { data }, TOKEN_SECRET, { expiresIn: `${TOKEN_EXP}s` },
 );
 
 exports.verifyToken = async (token) => {
@@ -27,10 +28,9 @@ exports.verifyToken = async (token) => {
     if (!db[data]) {
       return false;
     }
-
     return true;
-
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.error(err);
     return false;
   }

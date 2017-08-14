@@ -2,6 +2,10 @@
   "env": {
     "mocha": true
   },
+  "globals": {
+    "document": false,
+    "window": false
+  },
   "parser": "babel-eslint",
   "extends": "airbnb",
   "settings": {

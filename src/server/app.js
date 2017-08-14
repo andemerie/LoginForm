@@ -11,6 +11,7 @@ require('./config/koa')(app);
 
 if (!module.parent) {
   app.listen(config.port, config.ip, () => {
+    // eslint-disable-next-line no-console
     console.warn('Koa server listening on %d, in %s mode', config.port, config.env);
   });
 }

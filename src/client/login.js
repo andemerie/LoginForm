@@ -1,8 +1,10 @@
-import styles from './index.scss';
+/* eslint-disable no-console */
 import $ from 'jquery';
+
 import getYear from './getYear';
 import getWhyILove from './getWhyILove';
 import { post as apiClientPost } from './api.client';
+import './index.scss';
 
 $('.center__text').text(getWhyILove());
 
@@ -17,10 +19,12 @@ signButton.onclick = () => {
     email: email.value,
     password: password.value,
   })
-    .then(data => console.dir(data))
-    .then(() => window.location.href = '/protected')
-    .catch(error => {
+    .then(console.dir)
+    .then(() => {
+      window.location.href = '/protected';
+    })
+    .catch((error) => {
       $('.errors').text(error);
-      console.dir(error)
+      console.dir(error);
     });
 };

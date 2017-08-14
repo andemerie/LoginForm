@@ -1,8 +1,10 @@
-import styles from './index.scss';
+/* eslint-disable no-console */
 import $ from 'jquery';
+
 import getYear from './getYear';
 import getWhyILove from './getWhyILove';
 import { post as apiClientPost } from './api.client';
+import './index.scss';
 
 $('.center__text').text(getWhyILove());
 
@@ -21,6 +23,6 @@ sendButton.onclick = () => {
     description: description.value,
     quality: quality.value,
   })
-    .then(data => console.dir(data))
-    .catch(error => console.dir(error));
+    .then(console.dir)
+    .catch(console.dir);
 };

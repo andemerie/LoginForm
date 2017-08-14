@@ -1,10 +1,7 @@
-const webpack = require('webpack');
-const path = require('path');
-
 module.exports = {
-  entry: { 
-    login: `${__dirname}/src/client/login.js`, 
-    protected: `${__dirname}/src/client/protected.js`
+  entry: {
+    login: `${__dirname}/src/client/login.js`,
+    protected: `${__dirname}/src/client/protected.js`,
   },
 
   output: {
